@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,10 @@ Route::middleware([
     Route::resource('orders', OrderController::class);
     Route::get('/orders/{id}/print', [OrderController::class, 'print'])->name('orders.print');
 
+    Route::resource('enquiry', EnquiryController::class);
+
+    Route::get('/enquiry/delete/{id}', [EnquiryController::class, 'deleteData'])->name('enquiry.delete');
+    Route::post('/enquiry/delete/{id}', [EnquiryController::class, 'deleteData'])->name('enquiry.delete');
 
     Route::get('dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
 
@@ -117,4 +123,13 @@ Route::middleware([
         Route::get('/login/logs', [ReportController::class, 'viewLoginLogs'])->name('reports.login.logs.list')->middleware(['permission:reports.login.logs.list']);
         Route::post('/login/logs', [ReportController::class, 'viewLoginLogs'])->name('reports.login.logs.list')->middleware(['permission:reports.login.logs.list']);
     });
+});
+
+
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
+    return 'Cleared';
 });

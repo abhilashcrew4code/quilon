@@ -47,8 +47,8 @@ class PermissionsSeeder extends Seeder
         }
 
         DB::table('permissions')->insertOrIgnore(['name' => 'products', 'guard_name' => 'web', 'display_name' => 'Manage Products', 'group_id' => $perm_group->id]);
-
         DB::table('permissions')->insertOrIgnore(['name' => 'orders', 'guard_name' => 'web', 'display_name' => 'Manage Orders', 'group_id' => $perm_group->id]);
+        DB::table('permissions')->insertOrIgnore(['name' => 'enquiry', 'guard_name' => 'web', 'display_name' => 'Manage Enquiry', 'group_id' => $perm_group->id]);
 
         $perm_group = PermissionGroup::where('name', 'Expenses')->first();
         if (!$perm_group) {

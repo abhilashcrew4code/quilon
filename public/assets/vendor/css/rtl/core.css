@@ -20425,7 +20425,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
   position: absolute;
   z-index: 1;
   inset-block-start: 1.8rem;
-  inset-inline-start: 2.5rem;
+  inset-inline-start: 3.5rem;
 }
 
 .app-brand-link {

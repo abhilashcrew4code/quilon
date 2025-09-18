@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css?ver=1.0') }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"
         class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
@@ -53,7 +53,7 @@
 
         <a href="" class="auth-cover-brand">
             <span class="app-brand-logo demo">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="400" height="400" />
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="250" height="250" />
             </span>
         </a>
 

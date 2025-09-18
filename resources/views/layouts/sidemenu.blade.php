@@ -124,8 +124,9 @@
         </li>
         @endif
 
-         @if(auth()->user()->can('products') || auth()->user()->can('orders'))
-        <li class="menu-item {{ (Route::is('products.index') || Route::is('orders.index') ? 'active open' : '') }}">
+         @if(auth()->user()->can('products') || auth()->user()->can('orders') || auth()->user()->can('enquiry'))
+        <li class="menu-item {{ (Route::is('products.index') || Route::is('orders.index') ||
+        Route::is('enquiry.index') ? 'active open' : '') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-account-cog-outline"></i>
                 <div data-i18n="Manage">  Manage</div>
@@ -147,6 +148,16 @@
                     </a>
                 </li>
                 @endif
+
+                @if(auth()->user()->can('enquiry'))
+                <li class="menu-item {{ (Route::is('enquiry.index') ? 'active' : '') }}">
+                    <a href="{{ route('enquiry.index') }}" class="menu-link">
+                        <div data-i18n="Enquiry">Enquiry</div>
+                    </a>
+                </li>
+                @endif
+
+
             </ul>
         </li>
         @endif
