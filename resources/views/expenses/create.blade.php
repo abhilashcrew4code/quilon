@@ -16,14 +16,14 @@
             <input type="hidden" name="user_id" id="user_id" @isset($expense->id) value="{{ $expense->id }}" @endisset>
             <div class="card-body">
                 <div class="row g-2">
-                    <div class="col mb-2">
+                    <div class="col-12 col-md">
                         <label for="name" class="form-label">Name</label>
                         <input id="name" class="form-control @error('name') is-invalid @enderror" type="text"
                             name="name" placeholder="Name" @isset($expense->name)
                         value="{{ $expense->name }}" @endisset required="" />
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-12 col-md">
                         <label for="amount" class="form-label">Amount</label>
                         <input id="amount" class="form-control @error('amount') is-invalid @enderror" type="amount"
                             name="amount" placeholder="Amount" @isset($expense->amount) value="{{ $expense->amount }}" @endisset />
@@ -31,13 +31,13 @@
                 </div>
 
                 <div class="row g-2">
-                    <div class="col mb-2">
+                    <div class="col-12 col-md">
                         <label for="date" class="form-label">Date</label>
                         <input id="date" class="form-control @error('date') is-invalid @enderror" type="date"
                             name="date" placeholder="Date" @isset($expense->date)
                         value="{{ $expense->date }}" @endisset />
                     </div>
-                    <div class="col mb-2">
+                    <div class="col-12 col-md">
                         <label for="remarks" class="form-label">Remarks</label>
                         <textarea id="remarks" 
                                 class="form-control @error('remarks') is-invalid @enderror" 

@@ -15,6 +15,36 @@
     font-size: 14px;
 }
 
+@media (max-width: 576px) {
+    #orderItemsTable thead {
+        display: none;
+    }
+    #orderItemsTable, #orderItemsTable tbody, #orderItemsTable tr, #orderItemsTable td {
+        display: block;
+        width: 100%;
+    }
+    #orderItemsTable tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+    }
+    #orderItemsTable td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+    #orderItemsTable td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 0.5rem;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
 </style>
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}">

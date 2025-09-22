@@ -16,13 +16,13 @@
 
         <div class="card-body">
             <div class="row g-2 mb-2">
-                <div class="col">
+               <div class="col-12 col-md">
                     <label for="customer_name" class="form-label">Customer Name</label>
                     <input id="customer_name" class="form-control" type="text" 
                            name="customer_name" placeholder="Customer Name"
                            @isset($order->customer_name) value="{{ $order->customer_name }}" @endisset required />
                 </div>
-                <div class="col">
+                <div class="col-12 col-md">
                     <label for="payment_status" class="form-label">Payment Status</label>
                     <select id="payment_status" name="payment_status" class="form-select">
                         <option value="0" @isset($order->payment_status) @if($order->payment_status=='0') selected @endif @endisset>Unpaid</option>
@@ -33,22 +33,23 @@
 
             {{-- Order Items --}}
             <h6>Products</h6>
-           <table class="table table-bordered" id="orderItemsTable" style="table-layout: fixed; width:100%;">
-                <thead>
-                    <tr>
-                        <th style="width:45%">Product</th>
-                        <th style="width:15%">Price</th>
-                        <th style="width:10%">Qty</th>
-                        <th style="width:20%">Subtotal</th>
-                        <th style="width:10%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                     @php $rowIndex = 0; @endphp
+            <div class="table-responsive">
+                <table class="table table-bordered" id="orderItemsTable" style="table-layout: fixed; width:100%;">
+                    <thead>
+                        <tr>
+                            <th style="width:45%">Product</th>
+                            <th style="width:15%">Price</th>
+                            <th style="width:10%">Qty</th>
+                            <th style="width:20%">Subtotal</th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $rowIndex = 0; @endphp
                         @if(isset($order) && $order->items->count())
                             @foreach($order->items as $item)
                                 <tr>
-                                    <td>
+                                    <td data-label="Product">
                                         <select name="products[{{ $rowIndex }}][product_id]" class="form-select product-select" required>
                                             <option value="">-- Select Product --</option>
                                             @foreach($products as $p)
@@ -59,10 +60,18 @@
                                             @endforeach
                                         </select>
                                     </td>
-                                    <td><input type="number" name="products[{{ $rowIndex }}][price]" class="form-control price" step="0.01" value="{{ $item->price }}"></td>
-                                    <td><input type="number" name="products[{{ $rowIndex }}][quantity]" class="form-control qty" value="{{ $item->quantity }}" min="1"></td>
-                                    <td><input type="number" name="products[{{ $rowIndex }}][subtotal]" class="form-control subtotal" step="0.01" value="{{ $item->subtotal }}"></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm removeRow">&times;</button></td>
+                                    <td data-label="Price">
+                                        <input type="number" name="products[{{ $rowIndex }}][price]" class="form-control price" step="0.01" value="{{ $item->price }}">
+                                    </td>
+                                    <td data-label="Qty">
+                                        <input type="number" name="products[{{ $rowIndex }}][quantity]" class="form-control qty" value="{{ $item->quantity }}" min="1">
+                                    </td>
+                                    <td data-label="Subtotal">
+                                        <input type="number" name="products[{{ $rowIndex }}][subtotal]" class="form-control subtotal" step="0.01" value="{{ $item->subtotal }}">
+                                    </td>
+                                    <td data-label="">
+                                        <button type="button" class="btn btn-danger btn-sm removeRow">&times;</button>
+                                    </td>
                                 </tr>
                                 @php $rowIndex++; @endphp
                             @endforeach
@@ -83,18 +92,19 @@
                             </tr>
                             @php $rowIndex = 1; @endphp
                         @endif
-                </tbody>
-            </table>
-            <button type="button" class="btn btn-sm btn-secondary" id="addRow">+ Add Product</button>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-sm btn-secondary mt-2" id="addRow">+ Add Product</button>
 
             <div class="row g-2 mt-3">
-                <div class="col">
+               <div class="col-12 col-md">
                     <label for="total_amount" class="form-label">Total Amount</label>
                     <input id="total_amount" class="form-control" type="number" step="0.01" 
                            name="total_amount" 
                            @isset($order->total_amount) value="{{ $order->total_amount }}" @endisset />
                 </div>
-                 <div class="col">
+                 <div class="col-12 col-md">
                     <label for="date" class="form-label">Date</label>
                     <input id="date" class="form-control" type="date" name="date" 
                            @isset($order->date) value="{{ $order->date }}" @endisset required />
@@ -103,7 +113,7 @@
             </div>
              <div class="row g-2 mt-3">
 
-                 <div class="col">
+                <div class="col-12 col-md">
                     <label for="delivery_status" class="form-label">Delivery Status</label>
                     <select name="delivery_status" id="delivery_status" class="form-select">
                         <option value="0" {{ old('delivery_status', $order->delivery_status ?? 0) == 0 ? 'selected' : '' }}>Pending</option>
@@ -114,7 +124,7 @@
                 </div>
 
 
-                 <div class="col">
+                 <div class="col-12 col-md">
                     <label for="remarks" class="form-label">Remarks</label>
                     <textarea id="remarks" class="form-control" name="remarks" rows="2">@isset($order->remarks){{ $order->remarks }}@endisset</textarea>
                 </div>

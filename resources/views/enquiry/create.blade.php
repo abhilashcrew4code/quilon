@@ -16,13 +16,13 @@
 
         <div class="card-body">
             <div class="row g-2 mb-2">
-                <div class="col">
+                <div class="col-12 col-md">
                     <label for="customer_name" class="form-label">Customer Name</label>
                     <input id="customer_name" class="form-control" type="text" 
                            name="customer_name" placeholder="Customer Name"
                            @isset($enquiry->customer_name) value="{{ $enquiry->customer_name }}" @endisset required />
                 </div>
-                <div class="col">
+                <div class="col-12 col-md">
                     <label for="payment_status" class="form-label">Product</label>
                     <select class="form-control" id="product_id" name="product_id" required=""
                         data-placeholder="Select Author" style="width: 100%;">
@@ -38,13 +38,13 @@
             </div>
 
             <div class="row g-2 mb-2">
-                <div class="col">
+                <div class="col-12 col-md">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input id="quantity" class="form-control" type="text" 
                            name="quantity" placeholder="Quantity"
                            @isset($enquiry->quantity) value="{{ $enquiry->quantity }}" @endisset required />
                 </div>
-                <div class="col">
+                <div class="col-12 col-md">
                     <label for="payment_status" class="form-label">Date</label>
                    <input id="date" class="form-control" type="date" 
                            name="date" placeholder="Date"
@@ -53,14 +53,14 @@
             </div>
 
             <div class="row g-2 mb-2">
-                <div class="col">
+                <div class="col-12 col-md">
                     <label for="order_status" class="form-label">Payment Status</label>
                     <select id="order_status" name="order_status" class="form-select">
                         <option value="0" @isset($enquiry->order_status) @if($enquiry->order_status=='0') selected @endif @endisset>Pending</option>
                         <option value="1" @isset($enquiry->order_status) @if($enquiry->order_status=='1') selected @endif @endisset>Success</option>
                     </select>
                 </div>
-                <div class="col">
+               <div class="col-12 col-md">
                     <label for="remarks" class="form-label">Remarks</label>
                     <textarea id="remarks" class="form-control" name="remarks" rows="2">@isset($order->remarks){{ $order->remarks }}@endisset</textarea>
                 </div>
