@@ -4,6 +4,7 @@
 use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\CustomAuthController;
+use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ExpenseController;
@@ -60,6 +61,9 @@ Route::middleware([
     Route::impersonate();
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::get('/profit-calculation', [CalculationController::class, 'profitCalculation'])->name('profit-calculation');
+
 
     Route::resource('users', UserController::class);
     Route::resource('expenses', ExpenseController::class);
@@ -132,4 +136,9 @@ Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('config:cache');
     $exitCode = Artisan::call('view:clear');
     return 'Cleared';
+});
+
+Route::get('/run-artisan/{command}', function ($command) {
+    Artisan::call($command);
+    return Artisan::output();
 });

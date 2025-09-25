@@ -66,40 +66,45 @@
                 </button>
 
 
-                <div class="modal fade" id="viewMessageModal{{ $value->id }}" tabindex="-1" aria-labelledby="viewMessageLabel{{ $value->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                        
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="viewMessageLabel{{ $value->id }}">Order Message</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                <div class="modal fade" id="viewMessageModal{{ $value->id }}" tabindex="-1"
+     aria-labelledby="viewMessageLabel{{ $value->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
-                        <div class="modal-body">
-                            <p>🙏 Thank you, <strong>{{ $value->customer_name }}</strong>!</p>
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewMessageLabel{{ $value->id }}">Order Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                            <p>We truly appreciate your order with <strong>Quilon Pickles</strong>.<br>
-                            Your bill (Bill No: <strong>QP-{{ str_pad($value->id, 4, '0', STR_PAD_LEFT) }}</strong>) is attached.</p>
+            <!-- ✅ Add a wrapper with an ID for copying -->
+            <div class="modal-body" id="messageContent{{ $value->id }}">
+                <p>🙏 Thank you, <strong>{{ $value->customer_name }}</strong>!</p>
 
-                            <p>✨ Stay connected with us for new products and offers:</p>
+                <p>We truly appreciate your order with <strong>Quilon Pickles</strong>.<br>
+                Your bill (Bill No: <strong>QP-{{ str_pad($value->id, 4, '0', STR_PAD_LEFT) }}</strong>) is attached.</p>
 
-                            <ul>
-                                <li>📲 WhatsApp: 8891155404 </li>
-                                <li>📸 Instagram: [@quilon_pickles ](https://www.instagram.com/quilon_pickles/) </li>
-                                <li>📢 WhatsApp Channel: https://whatsapp.com/channel/0029VbBFQsS2kNFz32iZbT3f </li>
-                            </ul>
-                            <br>
+                <p>✨ Stay connected with us for new products and offers:</p>
 
-                            <p>Looking forward to serving you again! 💚</p>
-                        </div>
+                <ul>
+                    <li>📲 WhatsApp: 8891155404</li>
+                    <li>📸 Instagram: https://www.instagram.com/quilon_pickles/</li>
+                    <li>📢 WhatsApp Channel: https://whatsapp.com/channel/0029VbBFQsS2kNFz32iZbT3f</li>
+                </ul>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                <p>Looking forward to serving you again! 💚</p>
+            </div>
 
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                        onclick="copyModalText('{{ $value->id }}')">
+                    Copy Message
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 

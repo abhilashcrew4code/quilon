@@ -172,6 +172,15 @@
         </li>
         @endif
 
+        @if(auth()->user()->can('profit-calculation'))
+         <li class="menu-item {{ (Route::is('profit-calculation') ? 'active' : '') }}">
+            <a href="{{ route('profit-calculation') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                <div data-i18n="Profit Calculation">Profit Calculation</div>
+            </a>
+        </li>
+        @endif
+
        
         @if(auth()->user()->can('reports.login.logs.list'))
         <li class="menu-item {{ (Route::is('reports.login.logs.list') ? 'active open' : '') }}">

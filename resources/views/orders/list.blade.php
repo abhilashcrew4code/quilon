@@ -288,6 +288,21 @@
                 }, 3000);
             });
         }
+
+        function copyModalText(id) {
+            const el = document.getElementById('messageContent' + id);
+
+            // ✅ innerText gives only human-readable text with line breaks, no HTML
+            const text = el.innerText.trim();
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Message copied!');
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                alert('❌ Failed to copy text.');
+            });
+        }
+
 </script>
 @endsection
 

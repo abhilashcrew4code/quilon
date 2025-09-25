@@ -58,6 +58,15 @@ class PermissionsSeeder extends Seeder
         DB::table('permissions')->insertOrIgnore(['name' => 'expenses', 'guard_name' => 'web', 'display_name' => 'Expenses', 'group_id' => $perm_group->id]);
 
 
+        $perm_group = PermissionGroup::where('name', 'Calculation')->first();
+        if (!$perm_group) {
+            $perm_group = PermissionGroup::create(['name' => 'Calculation']);
+        }
+
+        DB::table('permissions')->insertOrIgnore(['name' => 'profit-calculation', 'guard_name' => 'web', 'display_name' => 'Profit Calculation', 'group_id' => $perm_group->id]);
+
+
+
         $perm_group = PermissionGroup::where('name', 'Reports And Logs')->first();
         if (!$perm_group) {
             $perm_group = PermissionGroup::create(['name' => 'Reports And Logs']);
