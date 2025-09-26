@@ -11,14 +11,14 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Auth;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
 
 
     //get Dashboard
-    public function getDashboard()
+    public function overviewDashboard()
     {
 
         $today = Carbon::today();
@@ -64,7 +64,7 @@ class DashboardController extends Controller
         $profitOrLoss = $totalEarnings - $totalExpenses;
 
 
-        return view('dashboard.index', [
+        return view('dashboard.overview.index', [
             'expenses' => [
                 'total'      => $totalExpenses,
                 'month'      => $monthExpenses,
@@ -89,6 +89,121 @@ class DashboardController extends Controller
             ],
             'deliveryStatus' => $deliveryStatus,
             'profitOrLoss'   => $profitOrLoss,
+        ]);
+    }
+
+    //Chart Dashboard
+    public function chartDashboard()
+    {
+        return view('dashboard.chart.index');
+    }
+
+    //Product data
+    public function productData()
+    {
+        $orderItems = OrderItem::whereHas('order', function ($q) {
+            $q->where('delivery_status', 2); // delivered
+        })->with('product')->get();
+
+        $productQuantities = [];
+        foreach ($orderItems as $item) {
+            $name = $item->product->name ?? 'Unknown';
+            $productQuantities[$name] = ($productQuantities[$name] ?? 0) + $item->quantity;
+        }
+
+        return response()->json([
+            'productNames' => array_keys($productQuantities),
+            'quantities' => array_values($productQuantities)
+        ]);
+    }
+
+    //Last 30 Days Sales
+    public function last30DaysSales()
+    {
+        $startDate = Carbon::now()->subDays(29)->startOfDay();
+        $endDate = Carbon::now()->endOfDay();
+
+        $sales = DB::table('order_items')
+            ->join('orders', 'orders.id', '=', 'order_items.order_id')
+            ->where('orders.delivery_status', 2)
+            ->whereBetween('orders.date', [$startDate, $endDate])
+            ->select(
+                DB::raw('DATE(orders.date) as order_date'),
+                DB::raw('SUM(order_items.quantity) as total_quantity')
+            )
+            ->groupBy('order_date')
+            ->orderBy('order_date')
+            ->get();
+
+        $labels = [];
+        $quantities = [];
+
+        $period = [];
+        for ($i = 0; $i < 30; $i++) {
+            $period[] = $startDate->copy()->addDays($i)->format('Y-m-d');
+        }
+
+        foreach ($period as $day) {
+            $labels[] = Carbon::parse($day)->format('d M');
+            $quantities[] = optional($sales->firstWhere('order_date', $day))->total_quantity ?? 0;
+        }
+
+        return response()->json([
+            'labels' => $labels,
+            'quantities' => $quantities
+        ]);
+    }
+
+    public function financialOverview()
+    {
+        // Total payment received
+        $totalIncome = DB::table('orders')
+            ->where('payment_status', 1) // paid orders
+            ->join('order_items', 'order_items.order_id', '=', 'orders.id')
+            ->select(DB::raw('SUM(order_items.price * order_items.quantity) as total'))
+            ->value('total') ?? 0;
+
+        // Total expenses
+        $totalExpense = DB::table('expenses')->sum('amount') ?? 0;
+
+        return response()->json([
+            'labels' => ['Income', 'Expenses'],
+            'series' => [$totalIncome, $totalExpense]
+        ]);
+    }
+
+    public function last30DaysIncome()
+    {
+        $startDate = Carbon::now()->subDays(29)->startOfDay();
+        $endDate = Carbon::now()->endOfDay();
+
+        // Total income per day from paid orders
+        $incomeData = DB::table('orders')
+            ->join('order_items', 'order_items.order_id', '=', 'orders.id')
+            ->where('orders.payment_status', 1) // only paid orders
+            ->whereBetween('orders.date', [$startDate, $endDate])
+            ->select(
+                DB::raw('DATE(orders.date) as order_date'),
+                DB::raw('SUM(order_items.price * order_items.quantity) as total_income')
+            )
+            ->groupBy('order_date')
+            ->orderBy('order_date')
+            ->get();
+
+        // Prepare labels and series arrays
+        $labels = [];
+        $series = [];
+
+        // Generate last 30 days
+        for ($i = 0; $i < 30; $i++) {
+            $day = $startDate->copy()->addDays($i)->format('Y-m-d');
+            $labels[] = Carbon::parse($day)->format('d M'); // e.g., 26 Sep
+            $series[] = optional($incomeData->firstWhere('order_date', $day))->total_income ?? 0;
+        }
+
+        return response()->json([
+            'labels' => $labels,
+            'series' => $series
         ]);
     }
 }

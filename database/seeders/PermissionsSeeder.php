@@ -88,7 +88,8 @@ class PermissionsSeeder extends Seeder
             $perm_group = PermissionGroup::create(['name' => 'Dashboard']);
         }
 
-        DB::table('permissions')->insertOrIgnore(['name' => 'dashboard', 'guard_name' => 'web', 'display_name' => 'Dashboard', 'group_id' => $perm_group->id]);
+        DB::table('permissions')->insertOrIgnore(['name' => 'overview.dashboard', 'guard_name' => 'web', 'display_name' => 'Overview Dashboard', 'group_id' => $perm_group->id]);
+        DB::table('permissions')->insertOrIgnore(['name' => 'chart.dashboard', 'guard_name' => 'web', 'display_name' => 'Chart Dashboard', 'group_id' => $perm_group->id]);
 
 
 

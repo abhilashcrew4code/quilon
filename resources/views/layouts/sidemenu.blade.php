@@ -34,7 +34,7 @@
                 <div data-i18n="Home">Home</div>
             </a>
         </li>
-
+{{-- 
         @if( auth()->user()->can('dashboard'))
         <li class="menu-item {{ (Route::is('dashboard') ? 'active' : '') }}">
             <a href="{{ route('dashboard') }}" class="menu-link">
@@ -42,7 +42,40 @@
                 <div data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
+        @endif --}}
+
+        @if( auth()->user()->can('overview.dashboard') || auth()->user()->can('chart.dashboard'))
+
+        <li class="menu-item {{ (Route::is('overview-dashboard') || Route::is('chart-dashboard') ? 'active open' : '') }}">
+
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons mdi mdi-view-dashboard-outline"></i>
+                <div data-i18n="Dashboard"> Dashboard</div>
+                <div class="badge bg-primary rounded-pill ms-auto"></div>
+            </a>
+
+            <ul class="menu-sub">
+                @if(auth()->user()->can('overview.dashboard'))
+                <li class="menu-item {{ (Route::is('overview-dashboard') ? 'active' : '') }}">
+                    <a href="{{ route('overview-dashboard') }}" class="menu-link">
+                        <div data-i18n="Overview">Overview</div>
+                    </a>
+                </li>
+                @endif
+
+                 @if(auth()->user()->can('chart.dashboard'))
+                <li class="menu-item {{ (Route::is('chart-dashboard') ? 'active' : '') }}">
+                    <a href="{{ route('chart-dashboard') }}" class="menu-link">
+                        <div data-i18n="Chart">Chart</div>
+                    </a>
+                </li>
+                @endif
+
+               
+            </ul>
+        </li>
         @endif
+
 
         @if(auth()->user()->can('users.list') || auth()->user()->can('announcements') )
 
@@ -128,7 +161,7 @@
         <li class="menu-item {{ (Route::is('products.index') || Route::is('orders.index') ||
         Route::is('enquiry.index') ? 'active open' : '') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons mdi mdi-account-cog-outline"></i>
+             <i class="menu-icon tf-icons mdi mdi-square-edit-outline"></i>
                 <div data-i18n="Manage">  Manage</div>
                 <div class="badge bg-primary rounded-pill ms-auto"></div>
             </a>
@@ -166,7 +199,7 @@
         @if(auth()->user()->can('expenses'))
          <li class="menu-item {{ (Route::is('expenses.index') ? 'active' : '') }}">
             <a href="{{ route('expenses.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                <i class="menu-icon tf-icons mdi mdi-cash-multiple"></i>
                 <div data-i18n="Expenses">Expenses</div>
             </a>
         </li>
@@ -175,7 +208,7 @@
         @if(auth()->user()->can('profit-calculation'))
          <li class="menu-item {{ (Route::is('profit-calculation') ? 'active' : '') }}">
             <a href="{{ route('profit-calculation') }}" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                <i class="menu-icon tf-icons mdi mdi-finance"></i>
                 <div data-i18n="Profit Calculation">Profit Calculation</div>
             </a>
         </li>
@@ -185,7 +218,7 @@
         @if(auth()->user()->can('reports.login.logs.list'))
         <li class="menu-item {{ (Route::is('reports.login.logs.list') ? 'active open' : '') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons mdi mdi-account-cog-outline"></i>
+               <i class="menu-icon tf-icons mdi mdi-file-chart-outline"></i>
                 <div data-i18n="Reports And Logs">  Reports And Logs</div>
                 <div class="badge bg-primary rounded-pill ms-auto"></div>
             </a>

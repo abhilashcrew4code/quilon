@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @extends('layouts.sidemenu')
 
-@section('title')Dashboaard @endsection
+@section('title')Overview Dashboaard @endsection
 
 @section('css')
 <style>
@@ -58,148 +58,16 @@
     <div class="card h-100">
       <div class="card-header">
         <div class="d-flex justify-content-between">
-          <h4 class="mb-2"> Dashboard</h4>
+          <h4 class="mb-2"> Overview Dashboard</h4>
         </div>
     </div>
   </div>
 </div>
-{{-- <div class="row gy-4 mb-4">
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-primary h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-primary"><i class="mdi mdi-clipboard-text-clock mdi-36px"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['tdy']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Total Calls (TDY)</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-danger">
-              <i class="mdi mdi-calendar-badge mdi-36px"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['ystdy']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Total Calls (YSTDY)</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-success h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-         <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-success">
-              <i class="mdi mdi-calendar-range mdi-36px"></i>
-            </span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['mtd']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Total Calls (MTD)</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-info h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-info"><i class="mdi mdi-calendar-expand-horizontal-outline mdi-36px"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['lmtd']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Total Calls (LMTD)</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-info h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-info"><i class="mdi mdi-alpha-c-box mdi-36px"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['complaint']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Complaints (MTD)</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-warning  h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-warning ">
-              <i class="mdi mdi-alpha-e-box mdi-36px"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['enquiry']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Enquiry (MTD)</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-secondary h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-         <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-secondary">
-              <i class="mdi mdi-alpha-r-box mdi-36px"></i>
-            </span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['request']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Request (MTD)</h5>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-lg-3 mb-2">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-danger"><i class="mdi mdi-alpha-o-box mdi-36px"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">{{$interactions['others']}}</h4>
-        </div>
-        <h5 class="mb-0 text-heading">Others (MTD)</h5>
-      </div>
-    </div>
-  </div>
-</div> --}}
-
-  {{-- <div class="col-sm-6 col-lg-12 mb-2">
-    <div class="card card-border-shadow-primary h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-         <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-label-primary">
-              <i class="mdi mdi-alpha-c-box mdi-36px"></i>
-            </span>
-          </div>
-          <h4 class="ms-1 mb-0 display-6">
-            {{$interactions['call_transfer']}}
-          </h4>
-        </div>
-        <h5 class="mb-0 text-heading">Call Transfer (MTD)</h5>
-      </div>
-    </div>
-  </div>
-   --}}
   
   <div class="row gy-4 mb-4">
 
     <div class="col-12">
-      <h4 class="fw-bold mb-3">Expenses Overview</h4>
+      <h4 class="fw-bold mb-3">Expenses</h4>
     </div>
 
 
@@ -288,7 +156,7 @@
 
 
     <div class="col-12">
-      <h4 class="fw-bold mb-3">Sales Quantity Overview</h4>
+      <h4 class="fw-bold mb-3">Sales Quantity</h4>
     </div>
 
 
@@ -378,7 +246,7 @@
   </div>
 
     <div class="col-12">
-      <h4 class="fw-bold mb-3">Earnings Overview</h4>
+      <h4 class="fw-bold mb-3">Earnings</h4>
     </div>
 
   {{-- Total Earnings --}}
@@ -470,7 +338,7 @@
 
 
    <div class="col-12">
-      <h4 class="fw-bold mb-3">Delivery Overview</h4>
+      <h4 class="fw-bold mb-3">Delivery</h4>
     </div>
 
 

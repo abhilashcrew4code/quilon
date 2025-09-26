@@ -79,6 +79,22 @@ Route::middleware([
 
     Route::get('dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
 
+    Route::get('overview-dashboard', [DashboardController::class, 'overviewDashboard'])->name('overview-dashboard');
+    Route::get('chart-dashboard', [DashboardController::class, 'chartDashboard'])->name('chart-dashboard');
+
+
+    Route::get('dashboard/product-data', [DashboardController::class, 'productData'])
+        ->name('dashboard.product.data');
+
+    Route::get('dashboard/last-30-days-sales', [DashboardController::class, 'last30DaysSales'])
+        ->name('dashboard.last30days.sales');
+
+    Route::get('dashboard/financial-overview', [DashboardController::class, 'financialOverview'])
+        ->name('dashboard.financial.overview');
+
+    Route::get('dashboard/last-30-days-income', [DashboardController::class, 'last30DaysIncome'])
+        ->name('dashboard.last30days.income');
+
     Route::resource('announcements', AnnouncementController::class);
     Route::get('/announcements/delete/{id}', [AnnouncementController::class, 'deleteData'])->name('announcements.delete');
     Route::post('/announcements/delete/{id}', [AnnouncementController::class, 'deleteData'])->name('announcements.delete');
