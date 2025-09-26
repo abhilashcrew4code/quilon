@@ -157,9 +157,10 @@
         </li>
         @endif
 
-         @if(auth()->user()->can('products') || auth()->user()->can('orders') || auth()->user()->can('enquiry'))
+         @if(auth()->user()->can('products') || auth()->user()->can('orders') || 
+         auth()->user()->can('enquiry') || auth()->user()->can('invest'))
         <li class="menu-item {{ (Route::is('products.index') || Route::is('orders.index') ||
-        Route::is('enquiry.index') ? 'active open' : '') }}">
+        Route::is('enquiry.index') || Route::is('invest.index') ? 'active open' : '') }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
              <i class="menu-icon tf-icons mdi mdi-square-edit-outline"></i>
                 <div data-i18n="Manage">  Manage</div>
@@ -186,6 +187,14 @@
                 <li class="menu-item {{ (Route::is('enquiry.index') ? 'active' : '') }}">
                     <a href="{{ route('enquiry.index') }}" class="menu-link">
                         <div data-i18n="Enquiry">Enquiry</div>
+                    </a>
+                </li>
+                @endif
+
+                @if(auth()->user()->can('invest'))
+                <li class="menu-item {{ (Route::is('invest.index') ? 'active' : '') }}">
+                    <a href="{{ route('invest.index') }}" class="menu-link">
+                        <div data-i18n="Invest">Invest</div>
                     </a>
                 </li>
                 @endif

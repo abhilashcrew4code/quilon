@@ -10,6 +10,7 @@ use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvestController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
@@ -73,9 +74,12 @@ Route::middleware([
     Route::get('/orders/{id}/print', [OrderController::class, 'print'])->name('orders.print');
 
     Route::resource('enquiry', EnquiryController::class);
-
     Route::get('/enquiry/delete/{id}', [EnquiryController::class, 'deleteData'])->name('enquiry.delete');
     Route::post('/enquiry/delete/{id}', [EnquiryController::class, 'deleteData'])->name('enquiry.delete');
+
+    Route::resource('invest', InvestController::class);
+    Route::get('/invest/delete/{id}', [InvestController::class, 'deleteData'])->name('invest.delete');
+    Route::post('/invest/delete/{id}', [InvestController::class, 'deleteData'])->name('invest.delete');
 
     Route::get('dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
 

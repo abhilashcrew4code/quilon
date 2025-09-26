@@ -101,7 +101,7 @@ class ExpenseController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return response()->json(['status' => 'success',  'message' => 'Role updated Successfully']);
+        return response()->json(['status' => 'success',  'message' => 'Expense updated Successfully']);
     }
 
     //Destroy
@@ -112,6 +112,6 @@ class ExpenseController extends Controller
             //'user_id'=>Auth::id(),
         ]);
         //user::find($id)->delete();
-        return response()->json(['status' => 'success',  'message' => 'user deleted successfully.']);
+        return response()->json(['status' => 'success',  'message' => 'Expense deleted successfully.']);
     }
 }

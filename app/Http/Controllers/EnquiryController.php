@@ -119,7 +119,7 @@ class EnquiryController extends Controller
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Order Updated Successfully',
+            'message' => 'Enquiry Updated Successfully',
         ]);
     }
 

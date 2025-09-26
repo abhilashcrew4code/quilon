@@ -62,7 +62,7 @@
                 </div>
                <div class="col-12 col-md">
                     <label for="remarks" class="form-label">Remarks</label>
-                    <textarea id="remarks" class="form-control" name="remarks" rows="2">@isset($order->remarks){{ $order->remarks }}@endisset</textarea>
+                    <textarea id="remarks" class="form-control" name="remarks" rows="2">@isset($enquiry->remarks){{ $enquiry->remarks }}@endisset</textarea>
                 </div>
             </div>
         </div>
